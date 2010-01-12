@@ -21,7 +21,7 @@ DataPlot::DataPlot(QWidget *parent):
     QwtPlot(parent)
 {
     setCanvasBackground(QColor(Qt::white));
-//    QwtPlotGrid *grid = new QwtPlotGrid;
+//     QwtPlotGrid *grid = new QwtPlotGrid;
 //     grid->enableXMin(true);
 //     grid->setMajPen(QPen(Qt::white, 0, Qt::DotLine));
 //     grid->setMinPen(QPen(Qt::gray, 0 , Qt::DotLine));
@@ -45,8 +45,6 @@ DataPlot::DataPlot(QWidget *parent):
 
     alignScales();
     
-    // Assign a title
-   // setTitle("Data Curve");
     insertLegend(new QwtLegend(), QwtPlot::BottomLegend);
 
     QwtSymbol sym;
@@ -59,16 +57,11 @@ DataPlot::DataPlot(QWidget *parent):
     cRight->setSymbol(sym);
     cRight->attach(this);
 
- //   QwtPlotCurve *cLeft = new QwtPlotCurve("Data Moving Left");
-  //  cLeft->attach(this);
-
     // Set curve styles
     cRight->setPen(QPen(Qt::blue));
- //   cLeft->setPen(QPen(Qt::blue));
 
-    // Attach (don't copy) data. Both curves use the same x array.
     cRight->setRawData(d_x, d_y, PLOT_SIZE);
- //   cLeft->setRawData(d_x, d_z, PLOT_SIZE);
+
 
 #if 0
     //  Insert zero line at y = 0
@@ -114,7 +107,7 @@ void DataPlot::setData(double x[PLOT_SIZE],double y[PLOT_SIZE])
     }
 
     setAxisScale(QwtPlot::yLeft, min-1, max+1);
-    //qsort(d_y,PLOT_SIZE,)
+
     replot();
 }
 
@@ -143,42 +136,4 @@ void DataPlot::alignScales()
     }
 }
 
-//void DataPlot::setTimerInterval(double ms)
-//{
-//    d_interval = qRound(ms);
-//
-//    if ( d_timerId >= 0 )
-//    {
-//        killTimer(d_timerId);
-//        d_timerId = -1;
-//    }
-//    if (d_interval >= 0 )
-//        d_timerId = startTimer(d_interval);
-//}
 
-////  Generate new values
-//void DataPlot::timerEvent(QTimerEvent *)
-//{
-////    static double phase = 0.0;
-////
-////    if (phase > (M_PI - 0.0001))
-////        phase = 0.0;
-////
-////    // y moves from left to right:
-////    // Shift y array right and assign new value to y[0].
-////
-////    for ( int i = PLOT_SIZE - 1; i > 0; i-- )
-////        d_y[i] = d_y[i-1];
-////    d_y[0] = sin(phase) * (-1.0 + 2.0 * double(rand()) / double(RAND_MAX));
-////
-////    for ( int j = 0; j < PLOT_SIZE - 1; j++ )
-////        d_z[j] = d_z[j+1];
-////
-////    d_z[PLOT_SIZE - 1] = 0.8 - (2.0 * phase/M_PI) + 0.4 *
-////        double(rand()) / double(RAND_MAX);
-////
-////    // update the display
-////    replot();
-////
-////    phase += M_PI * 0.02;
-//}

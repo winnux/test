@@ -13,23 +13,14 @@ public:
     DataPlot(QWidget* = NULL);
 
     void setData(double x[PLOT_SIZE],double y[PLOT_SIZE]);
-//public slots:
-//   void setTimerInterval(double interval);
 
-//protected:
-//    virtual void timerEvent(QTimerEvent *e);
 
 private:
     void alignScales();
 
     double d_x[PLOT_SIZE]; 
     double d_y[PLOT_SIZE]; 
-   // double d_z[PLOT_SIZE];
 
- //   int d_interval; // timer in ms
- //   int d_timerId;
-
-   // QwtPlotZoomer *zoomer ;
 };
 
 #endif

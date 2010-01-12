@@ -1,12 +1,14 @@
 # -------------------------------------------------
 # Project created by QtCreator 2010-01-05T19:38:42
 # -------------------------------------------------
-# include (examples.pri)
-# CONFIG(release, debug|release)
-# :LIBS += -lqwtd5
-# else:LIBS += -lqwt5
+VER_MAJ      = 1
+VER_MIN      = 0
+VER_PAT      = 0
+VERSION      = $${VER_MAJ}.$${VER_MIN}.$${VER_PAT}
+
 CONFIG += release
 TARGET = Analyzer
+DESTDIR = bin
 TEMPLATE = app
 SOURCES += main.cpp \
     mainwindow.cpp \
@@ -20,14 +22,19 @@ HEADERS += mainwindow.h \
     setdialog.h \
     pages.h
 FORMS += mainwindow.ui
-
-# win32
-# {
-# INCLUDEPATH += c:\projects\qwt-5.2.0\src
-# LIBS += c:\projects\qwt-5.2.0\lib\libqwt5.a
-# }
-# unix
-# {
-INCLUDEPATH += /home/lihaibo/dev/qwt-5.2.0/src
-LIBS += /home/lihaibo/dev/qwt-5.2.0/lib/libqwt.so
 RESOURCES += Analyzer.qrc
+win32{
+    INCLUDEPATH += c:\projects\qwt-5.2.0\src
+}
+
+win32:release{
+        LIBS += C:\projects\qwt-5.2.0\lib\libqwt.a
+    }
+else{
+        LIBS += C:\projects\qwt-5.2.0\lib\libqwtd.a
+    }
+
+unix{
+    INCLUDEPATH += /home/lihaibo/dev/qwt-5.2.0/src
+    LIBS += /home/lihaibo/dev/qwt-5.2.0/lib/libqwt.so
+}
