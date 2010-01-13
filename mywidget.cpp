@@ -100,22 +100,21 @@ void MyWidget::freshTable()
 {
     model->removeRows(0, model->rowCount(QModelIndex()), QModelIndex());
 
+    model->insertRows(0,memLength*5/100);
     for(int i = 0;  i<memLength*5/100;i++)
     {
         QDateTime t = startTime.addMSecs(i*200);
-        int currentRow = model->rowCount();
-        model->insertRow(currentRow);
         qApp->processEvents();
-        QModelIndex index1 = model->index(currentRow, 0,QModelIndex());
+        QModelIndex index1 = model->index(i, 0,QModelIndex());
         model->setData(index1, t.toString("yyyy-MM-dd hh:mm:ss:zzz"));
         double ret = 0;
         for(int j= 0;j<20;j+=2)
         {
-            index1 = model->index(currentRow,j/2+1,QModelIndex());
+            index1 = model->index(i,j/2+1,QModelIndex());
             ret +=memData[i*20+j]+memData[i*20+j+1]*256;
             model->setData(index1,memData[i*20+j]+memData[i*20+j+1]*256);
         }
-        index1 = model->index(currentRow, 11,QModelIndex());
+        index1 = model->index(i, 11,QModelIndex());
 
         if(ret == 0)
             ret = A-B ;
