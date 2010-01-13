@@ -6,7 +6,7 @@ VER_MIN      = 0
 VER_PAT      = 0
 VERSION      = $${VER_MAJ}.$${VER_MIN}.$${VER_PAT}
 
-CONFIG += release
+#CONFIG += release
 TARGET = Analyzer
 DESTDIR = bin
 TEMPLATE = app
@@ -25,16 +25,14 @@ FORMS += mainwindow.ui
 RESOURCES += Analyzer.qrc
 win32{
     INCLUDEPATH += c:\projects\qwt-5.2.0\src
-}
-
-win32:release{
+    win32:release{
         LIBS += C:\projects\qwt-5.2.0\lib\libqwt.a
     }
-else{
+    else{
         LIBS += C:\projects\qwt-5.2.0\lib\libqwtd.a
     }
-
+}
 unix{
     INCLUDEPATH += /home/lihaibo/dev/qwt-5.2.0/src
-    LIBS += /home/lihaibo/dev/qwt-5.2.0/lib/libqwt.so
+    LIBS += /home/lihaibo/dev/qwt-5.2.0/lib/libqwt.a
 }
